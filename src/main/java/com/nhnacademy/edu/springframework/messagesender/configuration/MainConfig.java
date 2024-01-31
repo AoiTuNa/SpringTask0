@@ -13,24 +13,10 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableAspectJAutoProxy
+@ComponentScan(basePackages = {"com.nhnacademy.edu.springframework.messagesender"})
 @PropertySource("classpath:setting.properties")
 public class MainConfig {
 
-    @Bean
-    public TimeRecord timeRecord() {
-        return new TimeRecord();
-    }
-
-    @Bean
-    public DoorayMessageSender doorayMessageSender(DoorayHookSender doorayHookSender) {
-        return new DoorayMessageSender(doorayHookSender);
-    }
-
-    @Bean
-    @Dooray
-    public MessageSenderService messageSenderService(DoorayMessageSender doorayMessageSender) {
-        return new MessageSenderService(doorayMessageSender);
-    }
 
     @Bean
     public DoorayHookSender doorayHookSender(RestTemplate restTemplate, @Value("${hookUrl}") String hookUrl) {

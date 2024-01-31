@@ -5,7 +5,9 @@ import com.nhn.dooray.client.DoorayHookSender;
 import com.nhnacademy.edu.springframework.messagesender.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
+@Service("doorayMessage")
 public class DoorayMessageSender implements MessageSender{
     private final DoorayHookSender doorayHookSender;
 
