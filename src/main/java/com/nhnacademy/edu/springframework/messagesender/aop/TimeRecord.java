@@ -2,9 +2,18 @@ package com.nhnacademy.edu.springframework.messagesender.aop;
 
 import com.nhnacademy.edu.springframework.messagesender.user.User;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.util.StopWatch;
 
+@Aspect
 public class TimeRecord {
+
+    @Pointcut("execution(* com.nhnacademy.edu.springframework.messagesender.MessageSenderService.doSendMessage(com.nhnacademy.edu.springframework.messagesender.user.User, java.lang.String))")
+    public void messageSenderService(){}
+
+    @Around("messageSenderService()")
     public Object doRecordStopWatch(ProceedingJoinPoint pjp)throws Throwable{
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
