@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- annotation설정을 위해 추가-->
+    <aop:aspectj-autoproxy />
+    <context:annotation-config />
+    <context:property-placeholder location="setting.properties"/>
+    <bean id="timeRecord" class="com.nhnacademy.edu.springframework.messagesender.aop.TimeRecord"/>
+    <aop:config>
+        <aop:pointcut id="sendMessagePointcut" expression="execution(* com.nhnacademy.edu.springframework.messagesender.MessageSenderService.doSendMessage(com.nhnacademy.edu.springframework.messagesender.user.User, java.lang.String))"/>
+        <aop:aspect ref="timeRecord">
+            <aop:around method="doRecordStopWatch" pointcut-ref="sendMessagePointcut" />
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="doorayMessageSender" class="com.nhnacademy.edu.springframework.messagesender.service.DoorayMessageSender">
+        <qualifier type="com.nhnacademy.edu.springframework.messagesender.annotation.Dooray"/>
+    </bean>
+
+    <bean id="messageSenderService" class="com.nhnacademy.edu.springframework.messagesender.MessageSenderService" autowire="byType">
+    </bean>
+    <bean id="doorayHookSender" class="com.nhn.dooray.client.DoorayHookSender">
+        <constructor-arg index="0" ref="restTemplet"/>
+        <constructor-arg index="1" value="${hookUrl}"/>
+    </bean>
+    <bean id="restTemplet" class="org.springframework.web.client.RestTemplate"/>
+</beans>
