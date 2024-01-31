@@ -1,6 +1,7 @@
 package com.nhnacademy.edu.springframework.messagesender.aop;
 
 import com.nhnacademy.edu.springframework.messagesender.user.User;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,6 +11,7 @@ import org.springframework.util.StopWatch;
 
 @Aspect
 @Component
+@Slf4j
 public class TimeRecord {
 
     @Pointcut("execution(* com.nhnacademy.edu.springframework.messagesender.MessageSenderService.doSendMessage(com.nhnacademy.edu.springframework.messagesender.user.User, java.lang.String))")
@@ -26,7 +28,7 @@ public class TimeRecord {
             throw new RuntimeException(e);
         }finally {
             stopWatch.stop();
-            System.out.println(stopWatch.prettyPrint());
+            log.info("[{}].[{}] [{}]ms",pjp.getSignature().getDeclaringType(),pjp.getSignature().getName(),stopWatch.getTotalTimeMillis());
             // 메소드 실행 시간과 메소드 이름을 출력합니다.
 
         }
