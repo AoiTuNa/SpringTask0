@@ -1,6 +1,5 @@
 package com.nhnacademy.edu.springframework.messagesender.aop;
 
-import com.nhnacademy.edu.springframework.messagesender.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.util.StopWatch;

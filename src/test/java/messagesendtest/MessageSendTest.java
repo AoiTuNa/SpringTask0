@@ -2,10 +2,7 @@ package messagesendtest;
 
 
 import com.nhn.dooray.client.DoorayHookSender;
-import com.nhnacademy.edu.springframework.messagesender.MessageSenderService;
-import com.nhnacademy.edu.springframework.messagesender.annotation.Dooray;
 import com.nhnacademy.edu.springframework.messagesender.service.DoorayMessageSender;
-import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
 import com.nhnacademy.edu.springframework.messagesender.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
