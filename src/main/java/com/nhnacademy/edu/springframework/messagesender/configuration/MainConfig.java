@@ -5,8 +5,7 @@ import com.nhnacademy.edu.springframework.messagesender.MessageSenderService;
 import com.nhnacademy.edu.springframework.messagesender.annotation.Dooray;
 import com.nhnacademy.edu.springframework.messagesender.aop.TimeRecord;
 import com.nhnacademy.edu.springframework.messagesender.service.DoorayMessageSender;
-import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.web.client.RestTemplate;

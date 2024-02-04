@@ -3,8 +3,7 @@ package com.nhnacademy.edu.springframework.messagesender.service;
 import com.nhn.dooray.client.DoorayHook;
 import com.nhn.dooray.client.DoorayHookSender;
 import com.nhnacademy.edu.springframework.messagesender.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+
 
 public class DoorayMessageSender implements MessageSender{
     private final DoorayHookSender doorayHookSender;
